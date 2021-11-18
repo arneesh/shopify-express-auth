@@ -1,12 +1,8 @@
 import Shopify from '@shopify/shopify-api';
 import { Session } from '@shopify/shopify-api/dist/auth/session';
 import {AccessMode} from '../types';
-
-
 import { HttpResponseError } from '@shopify/shopify-api/dist/error';
 import {DEFAULT_ACCESS_MODE} from '../auth';
-import {TEST_COOKIE_NAME, TOP_LEVEL_OAUTH_COOKIE_NAME} from '../index';
-
 import {redirectToAuth} from './utilities';
 import {Routes} from './types';
 
@@ -34,7 +30,6 @@ export function verifyToken(routes: Routes, accessMode: AccessMode = DEFAULT_ACC
           const client = new Shopify.Clients.Rest(session.shop, session.accessToken)
           await client.get({ path: "metafields", query: {'limit': 1} }) 
 
-          req.cookies.set(TOP_LEVEL_OAUTH_COOKIE_NAME);
           await next();
           return;
         } catch(e) {
@@ -46,8 +41,6 @@ export function verifyToken(routes: Routes, accessMode: AccessMode = DEFAULT_ACC
         }
       }
     }
-
-    req.cookies.set(TEST_COOKIE_NAME, '1');
 
     if (returnHeader) {
       res.status(403);

@@ -2,17 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 import {OAuthStartOptions, AccessMode, } from '../types';
 import createTopLevelOAuthRedirect from './create-top-level-oauth-redirect';
 import setUserAgent from './set-user-agent';
-
 import Shopify from '@shopify/shopify-api';
 
 const DEFAULT_MYSHOPIFY_DOMAIN = 'myshopify.com';
 export const DEFAULT_ACCESS_MODE: AccessMode = 'online';
-
-export const TOP_LEVEL_OAUTH_COOKIE_NAME = 'shopifyTopLevelOAuth';
-export const TEST_COOKIE_NAME = 'shopifyTestCookie';
-
-import ErrorCodes from './errors';
-
 
 export default function createShopifyAuth(options: OAuthStartOptions) {
   const config = {

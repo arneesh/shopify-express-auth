@@ -8,9 +8,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "lint": "eslint",
-    "prepublishOnly": "yarn run build",
-    "preversion": "yarn run test"
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "Arneesh Aima",

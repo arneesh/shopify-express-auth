@@ -1,5 +1,4 @@
 
-   
 import Shopify, { ApiVersion } from "@shopify/shopify-api";
 import { MemorySessionStorage } from "@shopify/shopify-api/dist/auth/session";
 

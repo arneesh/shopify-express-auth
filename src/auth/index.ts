@@ -55,11 +55,11 @@ export default function createShopifyAuth(options: OAuthStartOptions) {
 
     if (req.path === oAuthCallbackPath) {
       try {
-        const { shop, hmac, code, state, host, timestamp } = req.query;
+        // const { shop, hmac, code, state, host, timestamp } = req.query;
 
-        await Shopify.Auth.validateAuthCallback(req, res, {code: code, timestamp: timestamp, state: state, shop: shop, host: host, hmac: hmac });
+        // await Shopify.Auth.validateAuthCallback(req, res, {code: code, timestamp: timestamp, state: state, shop: shop, host: host, hmac: hmac });
 
-        req.query.state.shopify = await Shopify.Utils.loadCurrentSession(req, res, config.accessMode === 'online');
+        // req.query.state.shopify = await Shopify.Utils.loadCurrentSession(req, res, config.accessMode === 'online');
 
         if (config.afterAuth) {
           await config.afterAuth(req, res);

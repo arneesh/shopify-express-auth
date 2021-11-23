@@ -21,8 +21,6 @@ export function verifyToken(routes: Routes, accessMode: AccessMode = DEFAULT_ACC
     let session: Session | undefined;
     session = await Shopify.Utils.loadCurrentSession(req, res, accessMode === 'online');
     
-    console.log("🚀 ~ file: verify-token.ts ~ line 23 ~ verifyToken ~ session", session)
-
     if (session) {
       const scopesChanged = !Shopify.Context.SCOPES.equals(session.scope);
 

@@ -60,19 +60,19 @@ Once you have satisfied all the prerequisite conditions, install this package vi
 
 **npm**
 ```bash
-npm i shopify-express-auth
+npm install shopify-express-auth
 ```
 
 **yarn**
 ```bash
-npm i shopify-express-auth
+yarn add shopify-express-auth
 ```
 
 ## Usage
 
 **Authenticate your app**
 
-Add authentication function of this  middleware to your express app as a middleware. This functioon handles creating/re-creating oauth and session.
+Add authentication function of this  middleware to your express app as a middleware. This function handles creating/re-creating oauth and session.
 
 **Sample**
 

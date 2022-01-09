@@ -92,7 +92,7 @@ app.use(
     // if want the developed hassle free - keep the accessMode as 'offline'
     accessMode: 'offline',
     // Callback for when the auth procedure is complete. 
-    afterAuth(ctx) {
+    afterAuth(req, res) {
       const { shop, accessToken } = req.shopify;
 
       console.log('The access token is: ', accessToken);
@@ -103,6 +103,17 @@ app.use(
 );
 ```
 
+Access the session information on `res.shopify` inside the `afterAuth` callback. Store the access token for future use - such as: for creating webhooks, retrieving order, customer information etc.
+
+### `shopifyAuth` params
+
+| Param | Options  | Description |
+| :---:   | :-: | :-: |
+| prefix | empty string/some custom route prefix string | If you want to add a customp prefix in the auth routes. |
+| accessMode | offline/online | Corresponds to which access mode you want to use.  |
+| afterAuth() | - | A required callback function passed to **shopifyAuth**. After auth is successful, this callback function will be invoked and will contain the session information.   |
+
+**Note:** Online tokens expire every 24 hours and you will need to re-validate.
 
 **Validate your API calls**
 

@@ -10,7 +10,7 @@
     "build": "tsc",
     "lint": "eslint"
   },
-  "keywords": [],
+  "keywords": ["shopify", "express", "node", "jwt", "middleware", "app", "rest", "graphql"],
   "author": "Arneesh Aima",
   "license": "ISC",
   "dependencies": {

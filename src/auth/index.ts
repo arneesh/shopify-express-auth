@@ -4,6 +4,7 @@ import createTopLevelOAuthRedirect from './create-top-level-oauth-redirect';
 import setUserAgent from './set-user-agent';
 import Shopify from '@shopify/shopify-api';
 
+
 const DEFAULT_MYSHOPIFY_DOMAIN = 'myshopify.com';
 export const DEFAULT_ACCESS_MODE: AccessMode = 'online';
 
@@ -20,7 +21,7 @@ export default function createShopifyAuth(options: OAuthStartOptions) {
   const oAuthStartPath = `${prefix}/auth`;
   const oAuthCallbackPath = `${oAuthStartPath}/callback`;
 
-  const inlineOAuthPath = `${prefix}/auth/inline`;
+  const inlineOAuthPath = `${prefix}/auth/toplevel`;
   const topLevelOAuthRedirect = createTopLevelOAuthRedirect(
     Shopify.Context.API_KEY,
     inlineOAuthPath,
@@ -55,11 +56,10 @@ export default function createShopifyAuth(options: OAuthStartOptions) {
 
     if (req.path === oAuthCallbackPath) {
       try {
-        // const { shop, hmac, code, state, host, timestamp } = req.query;
+        // @ts-ignore
+        await Shopify.Auth.validateAuthCallback(req, res, req.query);
 
-        // await Shopify.Auth.validateAuthCallback(req, res, {code: code, timestamp: timestamp, state: state, shop: shop, host: host, hmac: hmac });
-
-        // req.query.state.shopify = await Shopify.Utils.loadCurrentSession(req, res, config.accessMode === 'online');
+        res.shopify = await Shopify.Utils.loadCurrentSession(req, res, config.accessMode === 'online');
 
         if (config.afterAuth) {
           await config.afterAuth(req, res);

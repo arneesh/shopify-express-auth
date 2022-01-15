@@ -40,7 +40,7 @@ Shopify.Context.initialize({
   SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
 });
 ```
- **Note:** Makse sure you replace
+ **Note:** Make sure you replace
  
  ```js
 SESSION_STORAGE: new Shopify.Session.MemorySessionStorage()
